@@ -5,7 +5,7 @@
  */
 package com.food.adminservlet;
 
-import com.food.fooditem.BakeryFood;
+import com.foodbucket.foodModel.BakeryFood;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

@@ -5,7 +5,7 @@
  */
 package com.food.adminservlet;
 
-import com.food.fooditem.BakeryFood;
+import com.foodbucket.foodModel.BakeryFood;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import java.io.File;
 import java.io.IOException;

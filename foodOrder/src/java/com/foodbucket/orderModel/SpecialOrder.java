@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.food.order;
+package com.foodbucket.orderModel;
 
 import com.food.managecls.DBConn;
 import java.sql.PreparedStatement;

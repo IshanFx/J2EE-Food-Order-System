@@ -5,8 +5,8 @@
  */
 package com.food.adminservlet;
 
-import com.food.order.NormalOrder;
-import com.food.order.SpecialOrder;
+import com.foodbucket.orderModel.NormalOrder;
+import com.foodbucket.orderModel.SpecialOrder;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;

@@ -5,7 +5,7 @@
  */
 
 
-package com.food.fooditem;
+package com.foodbucket.foodModel;
 
 
 import java.io.InputStream;
