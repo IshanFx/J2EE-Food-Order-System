@@ -15,7 +15,7 @@ import javax.servlet.http.Part;
  *
  * @author IshanFX
  */
-public class Food {
+public class FoodBean {
     private int foodId;
     private String foodName;
     private double foodPrice;

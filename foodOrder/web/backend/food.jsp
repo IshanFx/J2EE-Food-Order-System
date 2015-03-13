@@ -1,5 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.food.fooditem.BakeryFood"%>
+
+<%@page import="com.foodbucket.foodModel.BakeryFood"%>
 <!DOCTYPE html>
 <html lang="en">
 

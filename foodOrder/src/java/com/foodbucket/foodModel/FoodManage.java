@@ -13,5 +13,4 @@ public interface FoodManage {
     int addFoodItems();
     int modifyFoodItems();
     int removeFoodItems();
-   
 }

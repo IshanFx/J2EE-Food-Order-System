@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  *
  * @author IshanFX
  */
-public class BakeryFood extends Food implements FoodManage {
+public class BakeryFood extends FoodBean implements FoodManage {
 
     private ResultSet rst;
     private PreparedStatement pstmt;
