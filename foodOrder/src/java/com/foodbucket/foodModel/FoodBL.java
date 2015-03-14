@@ -19,42 +19,27 @@ import java.util.logging.Logger;
  *
  * @author IshanFX
  */
-public class BakeryFood extends FoodBean implements FoodManage {
+public class FoodBL extends FoodBean implements FoodManage {
 
     private ResultSet rst;
     private PreparedStatement pstmt;
     private Statement stmt;
     
-    public BakeryFood() {
+    public FoodBL() {
         
     }
     
 
     @Override
-    public int addFoodItems() {
+    public int addFoodItems(FoodBean food) {
         int chk = 0;
-        String sql= "INSERT INTO food_tbl(foodid,foodname,foodprice,fooddesc,foodstatus,foodcategory,foodimg) VALUES(?,?,?,?,?,?,?)";
-        try {
-            InputStream stream = getFoodimage().getInputStream();
-            pstmt = DBConn.dbConn().prepareStatement(sql);
-            pstmt.setInt(1,getFoodId());
-            pstmt.setString(2, getFoodName());
-            pstmt.setDouble(3,getFoodPrice());
-            pstmt.setString(4,getFoodDesc());
-            pstmt.setString(5, getFoodstatus());
-            pstmt.setString(6, getFoodCateg());
-            pstmt.setBlob(7, stream);
-            chk = pstmt.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(BakeryFood.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(BakeryFood.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(BakeryFood.class.getName()).log(Level.SEVERE, null, ex);
+         try {
+             InputStream stream = food.getFoodimage().getInputStream();
+        String sql= "INSERT INTO food_tbl(foodid,foodname,foodprice,fooddesc,foodstatus,foodcategory,foodimg) VALUES('"+food.getFoodId()+"','"+food.getFoodName()+"','"+food.getFoodPrice()+"','"+food.getFoodDesc()+"','"+ food.getFoodstatus()+"','"+food. getFoodCateg()+"','"+stream+"')";
+            chk = new DBConn().executeQuery(sql);          
+        } catch (Exception ex) {
+            Logger.getLogger(FoodBL.class.getName()).log(Level.SEVERE, null, ex);
         } 
-        
-        
         return chk;
     }
 
@@ -68,7 +53,7 @@ public class BakeryFood extends FoodBean implements FoodManage {
             pstmt.setDouble(2,getFoodPrice());
             chk = pstmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(BakeryFood.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FoodBL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return chk;
     }
@@ -92,7 +77,7 @@ public class BakeryFood extends FoodBean implements FoodManage {
             stmt = DBConn.dbConn().createStatement();
             rst = stmt.executeQuery(sql);
         } catch (SQLException ex) {
-            Logger.getLogger(BakeryFood.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FoodBL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rst;
     }

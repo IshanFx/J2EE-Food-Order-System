@@ -5,7 +5,7 @@
  */
 package com.food.adminservlet;
 
-import com.foodbucket.foodModel.BakeryFood;
+import com.foodbucket.foodModel.FoodBL;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -25,7 +25,7 @@ public class FoodRemoveServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        BakeryFood bk = new BakeryFood();
+        FoodBL bk = new FoodBL();
         bk.setFoodId(Integer.parseInt(request.getParameter("foodremoveid")));
         
         int chk = bk.removeFoodItems();

@@ -1,6 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 
-<%@page import="com.foodbucket.foodModel.BakeryFood"%>
+<%@page import="com.foodbucket.foodModel.FoodBL "%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,7 +144,7 @@
                                                     <div class="panel-body">
                                                         <div class="table-responsive table-bordered">
                                                             <table class="table">
-                                                                <% BakeryFood bakeryFood = new BakeryFood(); %>
+                                                                <% FoodBL bakeryFood = new FoodBL(); %>
                                                                 <% ResultSet rst = bakeryFood.getFoodDetails(); %>
                                                                 <thead>
                                                                     

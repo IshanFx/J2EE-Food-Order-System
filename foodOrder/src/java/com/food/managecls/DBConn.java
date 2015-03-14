@@ -7,6 +7,8 @@ package com.food.managecls;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,9 +19,11 @@ import javax.swing.JOptionPane;
  * @author IshanFX
  */
 public class DBConn {
+       PreparedStatement pstmt;
+    static Connection conn = null;
     public static Connection dbConn(){
-        
-        Connection conn = null;
+     
+       
         try{
         Class.forName("com.mysql.jdbc.Driver");
         conn = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/fooddb", "root", "");
@@ -30,5 +34,29 @@ public class DBConn {
         }
         return conn;
     
+    } 
+
+    
+    public int executeQuery(String sql){
+        int x=0;
+        try{
+        pstmt = conn.prepareStatement(sql);
+        x =  pstmt.executeUpdate();
+        }
+        catch(Exception ex){
+        }
+        return x;
+    }
+    
+    public ResultSet selectQuery(String sql){
+     ResultSet set = null;
+     try{
+     pstmt = conn.prepareStatement(sql);
+        set =  pstmt.executeQuery();
+        }
+        catch(Exception ex){
+            
+        }
+        return set;
     } 
 }

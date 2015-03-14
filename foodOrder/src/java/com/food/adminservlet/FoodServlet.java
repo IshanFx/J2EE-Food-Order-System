@@ -5,7 +5,8 @@
  */
 package com.food.adminservlet;
 
-import com.foodbucket.foodModel.BakeryFood;
+import com.foodbucket.foodModel.FoodBL;
+import com.foodbucket.foodModel.FoodBean;
 import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +43,8 @@ public class FoodServlet extends HttpServlet {
           PrintWriter out = response.getWriter();
         try{
             
-        BakeryFood bkfood = new BakeryFood();
+        FoodBean bkfood = new FoodBean();
+        FoodBL foodbl = new FoodBL();
         
         bkfood.setFoodId(Integer.parseInt(request.getParameter("foodid")));
         bkfood.setFoodName(request.getParameter("foodname"));  
@@ -53,9 +55,9 @@ public class FoodServlet extends HttpServlet {
         bkfood.setFoodimage(request.getPart("foodimage"));
         bkfood.setFoodstatus("Y");
         
-        int chk = bkfood.addFoodItems();
+        int chk = foodbl.addFoodItems(bkfood);
           if(chk==1 ){
-              response.sendRedirect("food.jsp?saveok=1");
+              response.sendRedirect("food.jsp");
           }
         }
         catch(Exception ex){

@@ -5,7 +5,7 @@
  */
 package com.food.adminservlet;
 
-import com.foodbucket.foodModel.BakeryFood;
+import com.foodbucket.foodModel.FoodBL;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -32,7 +32,7 @@ public class FoodModifyServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         
-        BakeryFood bkfood = new BakeryFood();
+        FoodBL bkfood = new FoodBL();
         bkfood.setFoodId(Integer.parseInt(request.getParameter("modiid")));
         bkfood.setFoodDesc(request.getParameter("modidesc"));
         bkfood.setFoodPrice(Double.parseDouble(request.getParameter("modiprice")));

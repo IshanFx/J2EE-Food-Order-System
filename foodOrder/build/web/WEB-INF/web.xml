@@ -22,7 +22,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>FoodServlet</servlet-name>
-        <url-pattern>/FoodServlet</url-pattern>
+        <url-pattern>/backend/FoodServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>

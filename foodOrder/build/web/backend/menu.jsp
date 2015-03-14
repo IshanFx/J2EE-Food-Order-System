@@ -145,7 +145,9 @@
                     <li>
                         <a href="report.jsp"><i class="fa fa-fw fa-edit"></i> Reports</a>
                     </li>
-                    
+                    <li>
+                        <a href="report.jsp"><i class="fa fa-fw fa-eye"></i>Site Adds</a>
+                    </li>
 
                 </ul>
             </div>
