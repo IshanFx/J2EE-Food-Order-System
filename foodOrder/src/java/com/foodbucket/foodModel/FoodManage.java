@@ -11,6 +11,6 @@ package com.foodbucket.foodModel;
  */
 public interface FoodManage {
     int addFoodItems(FoodBean food);
-    int modifyFoodItems();
-    int removeFoodItems();
+    int modifyFoodItems(FoodBean food);
+    int removeFoodItems(FoodBean food);
 }

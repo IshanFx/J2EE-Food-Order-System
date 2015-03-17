@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Food Bucket</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -124,6 +124,17 @@
                                     </form>
                                     <br />
                                         </div>
+                                <div class="col-md-6">
+                                    
+                                                <div class="panel-heading">
+                                                    
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div id="morris-donut-chart"></div>
+                                                    
+                                                </div>
+                
+                                </div>
                                     </div>
                                 </div>
                             </div>
@@ -212,8 +223,7 @@
                 $(".removebtn").attr("href","#removeModel")
                 $("#removeid").val(removeid);
             }
-            
-            
+
         </script>
         
   <!-- Modal -->
@@ -325,7 +335,33 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
+    <script src="js/plugins/morris/raphael.min.js"></script>
+    <script src="js/plugins/morris/morris.min.js"></script>
+    <script src="js/plugins/morris/morris-data.js"></script>
+    
+    
+    <script>
+        function doechart(){
+            Morris.Donut({
+        element: 'morris-donut-chart',
+        data: [{
+            label: "Sweets",
+            value: 89
+        }, {
+            label: "Bun",
+            value: 100
+        },{
+            label: "Cake",
+            value: 40
+        },{
+            label: "Bread",
+            value: 50
+        },],
+        resize: true
+    });
+        }
+        doechart();
+    </script>
 </body>
 
 </html>

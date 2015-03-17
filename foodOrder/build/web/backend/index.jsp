@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="com.foodbucket.reportModel.Report"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.food.managecls.Customer" %>
@@ -13,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Food Bucket</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -235,7 +236,7 @@
                                 <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Monthly Income</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="morris-bar-chart"></div>
+                                <div id="morris-bar-chart1"></div>
                                 <div class="text-right">
                                     <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
                                 </div>
@@ -247,15 +248,12 @@
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="panel panel-green">
+                        <div class="panel panel-yellow">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Orders</h3>
+                                <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>New Order Comparison</h3>
                             </div>
                             <div class="panel-body">
-                                <div id="morris-donut-chart"></div>
-                                <div class="text-right">
-                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
+                                <div id="morris-donut-chart"></div>   
                             </div>
                         </div>
                     </div>
@@ -278,74 +276,77 @@
     <script src="js/plugins/morris/raphael.min.js"></script>
     <script src="js/plugins/morris/morris.min.js"></script>
     <script src="js/plugins/morris/morris-data.js"></script>
+    <% Report report2 = new Report(); %>
+    <% HashMap<String,String> table = report2.getAllMonthIncome(); %>
+    
     <script>
-       function chart(){
+       function chart1(){
            Morris.Bar({
-        element: 'morris-bar-chart',
-        data: [{
-            device: 'January',
-            geekbench: 500
-        }, {
-            device: 'February',
-            geekbench: 137
-        }, {
-            device: 'March',
-            geekbench: 275
-        }, {
-            device: 'April',
-            geekbench: 380
-        },  {
-            device:'May',
-            geekbench:600
-        },
-            {
-            device: 'June',
-            geekbench: 655
-        }, {
-            device: 'July',
-            geekbench: 1571
-        }, {
-            device: 'August',
-            geekbench: 655
-        }, {
-            device: 'September',
-            geekbench: 655
-        },{
-            device: 'October',
-            geekbench: 655
-        },{
-            device: 'November',
-            geekbench: 655
-        }, {
-            device: 'December',
-            geekbench: 655
-        },],
-        xkey: 'device',
-        ykeys: ['geekbench'],
-        labels: ['Geekbench'],
-        barRatio: 0.4,
-        xLabelAngle: 35,
-        hideHover: 'auto',
-        resize: true
-    });
+                element: 'morris-bar-chart1',
+                data: [{
+                    device: 'January',
+                    geekbench: <%=table.get("January") %>
+                }, {
+                    device: 'February',
+                    geekbench: <%=table.get("February") %>
+                }, {
+                    device: 'March',
+                    geekbench: <%=table.get("March") %>
+                }, {
+                    device: 'April',
+                    geekbench: <%=table.get("April") %>
+                },  {
+                    device:'May',
+                    geekbench:<%=table.get("May") %>
+                },
+                    {
+                    device: 'June',
+                    geekbench: <%=table.get("June") %>
+                }, {
+                    device: 'July',
+                    geekbench: <%=table.get("July") %>
+                }, {
+                    device: 'August',
+                    geekbench: <%=table.get("August") %>
+                }, {
+                    device: 'September',
+                    geekbench: <%=table.get("September") %>
+                },{
+                    device: 'October',
+                    geekbench: <%=table.get("October") %>
+                },{
+                    device: 'November',
+                    geekbench: <%=table.get("November") %>
+                }, {
+                    device: 'December',
+                    geekbench: <%=table.get("December") %>
+                },],
+                xkey: 'device',
+                ykeys: ['geekbench'],
+                labels: ['Income'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+                resize: true
+            });
        }
-       chart();
+       chart1();
         
     </script>
     <script>
         function doechart(){
-            Morris.Donut({
-        element: 'morris-donut-chart',
-        data: [{
-            label: "Normal Orders",
-            value: 12
-        }, {
-            label: "Special orders",
-            value: 30
-        },],
-        resize: true
-    });
-        }
+                Morris.Donut({
+                    element: 'morris-donut-chart',
+                    data: [{
+                        label: "Normal Orders",
+                        value: 12
+                    }, {
+                        label: "Special orders",
+                        value: 30
+                    },],
+                    resize: true
+                });
+            }
         doechart();
     </script>
 </body>

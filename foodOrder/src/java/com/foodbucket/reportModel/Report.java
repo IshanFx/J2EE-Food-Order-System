@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +27,7 @@ public class Report {
     private double normalIncome;
     private double specialOrder;
     private double monthlyIncome;
-    
+    HashMap<String,String> table;
     
     
     public double getAnnualIncome(){
@@ -43,14 +45,11 @@ public class Report {
             while(rst.next()){
                 specialOrder = rst.getDouble(1);
             }
-            
-            
+                       
         } catch (SQLException ex) {
             Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        }       
         return normalIncome+specialOrder; 
-  
     }
     
     public double getCurrentMonthIncome(){
@@ -78,21 +77,82 @@ public class Report {
         return monthlyIncome; 
     }
     
-    public ResultSet getAllMonthIncome(){
-        String sql = "SELECT SUM(n.ordtotal) FROM normalord_tbl n,order_tbl o WHERE o.orderid=n.orderid Group by o.ordermonth";
+    public HashMap getAllMonthIncome(){
+        String sql = "SELECT SUM(n.ordtotal),o.ordermonth FROM normalord_tbl n JOIN order_tbl o ON o.orderid=n.orderid Group by o.ordermonth ORDER BY o.ordermonth";
+        
+        table = new HashMap<String,String>();       
         int rowCount=0;
         try {
             stmt = DBConn.dbConn().createStatement();
             rst = stmt.executeQuery(sql);
             while(rst.next()){
-            rowCount =  rst.getRow();
+                if(rst.getInt(2)==1){
+                    table.put("January" ,rst.getString(1));
+                }
+                if(rst.getInt(2)==2){
+                    table.put("February",rst.getString(1));
+                }
+                if(rst.getInt(2)==3){
+                    table.put("March",rst.getString(1));
+                }
+                if(rst.getInt(2)==4){
+                    table.put("April",rst.getString(1));
+                }
+                if(rst.getInt(2)==5){
+                    table.put("May",rst.getString(1));
+                }
+                if(rst.getInt(2)==6){
+                    table.put("June",rst.getString(1));
+                }
+                if(rst.getInt(2)==7){
+                    table.put("July",rst.getString(1));
+                }
+                if(rst.getInt(2)==8){
+                    table.put("August",rst.getString(1));
+                }
+                if(rst.getInt(2)==9){
+                    table.put("September",rst.getString(1));
+                }
+                if(rst.getInt(2)==10){
+                    table.put("October",rst.getString(1));
+                }
+                if(rst.getInt(2)==11){
+                    table.put("November",rst.getString(1));
+                }
+                if(rst.getInt(2)==12){
+                    table.put("December",rst.getString(1));
+                }
             }
-        } catch (SQLException ex) {
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return table;
+    }
+    
+    public ResultSet getBestSellingItems(){
+        ResultSet rst = null;
+        String sql = "SELECT f.foodname,f.foodcategory,SUM(no.ordquantity),SUM(no.ordTotal),COUNT(*)" +
+                     "FROM food_tbl f JOIN normalord_tbl no ON f.foodid=no.foodid " +
+                     "GROUP BY f.foodname ORDER BY COUNT(*) DESC";
+        try {
+           rst = new DBConn().selectQuery(sql);
+        }        
+        catch (Exception e) {
+            
         }
         return rst;
     }
-  
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
    
     
     

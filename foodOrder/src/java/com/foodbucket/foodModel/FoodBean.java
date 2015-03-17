@@ -9,13 +9,14 @@ package com.foodbucket.foodModel;
 
 
 import java.io.InputStream;
+import java.io.Serializable;
 import javax.servlet.http.Part;
 
 /**
  *
  * @author IshanFX
  */
-public class FoodBean {
+public class FoodBean implements Serializable{
     private int foodId;
     private String foodName;
     private double foodPrice;
@@ -83,6 +84,10 @@ public class FoodBean {
         this.foodimage = foodimage;
     }
     
+    public FoodBean(){
+    
+    
+    }
     
     
 }

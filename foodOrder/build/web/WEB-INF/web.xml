@@ -26,19 +26,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerServlet</servlet-name>
-        <url-pattern>/CustomerServlet</url-pattern>
+        <url-pattern>/backend/CustomerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
-        <url-pattern>/OrderServlet</url-pattern>
+        <url-pattern>/backend/OrderServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FoodModifyServlet</servlet-name>
-        <url-pattern>/FoodModifyServlet</url-pattern>
+        <url-pattern>/backend/FoodModifyServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FoodRemoveServlet</servlet-name>
-        <url-pattern>/FoodRemoveServlet</url-pattern>
+        <url-pattern>/backend/FoodRemoveServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

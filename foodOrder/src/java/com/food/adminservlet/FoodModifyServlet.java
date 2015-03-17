@@ -6,8 +6,10 @@
 package com.food.adminservlet;
 
 import com.foodbucket.foodModel.FoodBL;
+import com.foodbucket.foodModel.FoodBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,23 +33,22 @@ public class FoodModifyServlet extends HttpServlet {
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
         
-        
-        FoodBL bkfood = new FoodBL();
+        FoodBL food = new  FoodBL();
+        FoodBean bkfood = new FoodBean();
         bkfood.setFoodId(Integer.parseInt(request.getParameter("modiid")));
         bkfood.setFoodDesc(request.getParameter("modidesc"));
         bkfood.setFoodPrice(Double.parseDouble(request.getParameter("modiprice")));
         
-        int chk = bkfood.modifyFoodItems();
+        int chk = food.modifyFoodItems(bkfood);
         if(chk==1){               
-            response.sendRedirect("food.jsp#profile");
+           RequestDispatcher redirect = request.getRequestDispatcher("food.jsp");
+           redirect.forward(request, response);
         }
             
         else{
             response.sendRedirect("food.jsp#profile#errorModel");
         }
-        
-        
-        
+
         
         }
         

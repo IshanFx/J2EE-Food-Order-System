@@ -1,3 +1,6 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="com.foodbucket.reportModel.Report"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>Food Bucket</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -35,18 +38,15 @@
 <body>
 
     <div id="wrapper">
-
         <!-- Navigation -->
-     <%@include file="menu.jsp" %>
+    <%@include file="menu.jsp" %>
 
         <div id="page-wrapper">
-
             <div class="container-fluid">
-
                 <!-- Page Heading -->
                 
             </div>
-                        <div class="row">
+                <div class="row">
                        <div class="col-md-12 col-sm-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -58,17 +58,16 @@
                                 </li>
                                 <li class=""><a href="#annual" data-toggle="tab">Annual Income</a>
                                 </li>
-                               <li class=""><a href="#sellingfood" data-toggle="tab">Selling Foods</a>
+                                <li class=""><a href="#sellingfood" data-toggle="tab">Best Selling Foods</a>
                                 </li>
                             </ul>
 
                             <div class="tab-content">
+                                 <!-- Monthly income tab start-->
                                 <div class="tab-pane fade active in" id="month">
                                     <h4>Monthly Income</h4>
-                                                  <div class="col-md-12">
-                  <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered table-hover">
@@ -104,17 +103,32 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <!-- End  Kitchen Sink -->
+                                    </div>
+
+                                    <!--Monthly Income Chart -->
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Monthly Income</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div id="morris-bar-chart1"></div>
+                                                <div class="text-right">
+                                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                
+                                <!-- Annual income tab End-->
+                                 
+                                 
+                                <!-- Annual income tab start-->
                                 <div class="tab-pane fade" id="annual">
-                                    <h4>Annual Income</h4>
-                                                                          <div class="col-md-12">
-                  <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        
-                                            <div class="panel-body">
+                                <h4>Annual Income</h4>
+                                    <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered table-hover">
                                                         <thead>
@@ -149,80 +163,70 @@
                                                 </div>
                                             </div>
                                         </div>
-                                         <!-- End  Kitchen Sink -->
+                                    </div>
+                                    
+                                    <!--Annual Income Chart -->
+                                    <div class="col-lg-12">
+                                        <div class="panel panel-green">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title"><i class="fa fa-long-arrow-right"></i>Annual Income</h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div id="morris-bar-chart2"></div>
+                                                <div class="text-right">
+                                                    <a href="#">View Details <i class="fa fa-arrow-circle-right"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <%-- tab 3--%>
+                                 <!-- Annual income tab End-->
+                                 
+                                 
+                                <!-- Best Selling Food start-->
                                 <div class="tab-pane fade" id="sellingfood">
-                                    <h4>Selling Foods</h4>
-                                <div class="col-md-12">
-                  <!--   Kitchen Sink -->
-                    <div class="panel panel-default">
-                        
+                                <h4>Best Selling Foods</h4>
+                                    <div class="col-md-12">
+                                        <div class="panel panel-default">
                                             <div class="panel-body">
                                                 <div class="table-responsive">
                                                     <table class="table table-striped table-bordered table-hover">
                                                         <thead>
+                                                            <% Report report = new Report(); %>
+                                                            <% ResultSet rst  = report.getBestSellingItems(); %>
                                                             <tr>
-                                                                <th>#</th>
-                                                                <th>First Name</th>
-                                                                <th>Last Name</th>
-                                                                <th>Username</th>
+                                                                <th>Food Name</th>
+                                                                <th>Category</th>
+                                                                <th>Quantity</th>
+                                                                <th>Total</th>
+                                                                <th>No Of Orders</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            <% while(rst.next()){ %>
                                                             <tr>
-                                                                <td>1</td>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>@mdo</td>
+                                                                <td><%=rst.getString(1) %> </td>
+                                                                <td><%=rst.getString(2) %></td>
+                                                                <td><%=rst.getString(3) %></td>
+                                                                <td><%=rst.getString(4) %></td>
+                                                                <td><%=rst.getString(5) %></td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>2</td>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>@fat</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>3</td>
-                                                                <td>Larry</td>
-                                                                <td>the Bird</td>
-                                                                <td>@twitter</td>
-                                                            </tr>
+                                                            <% } %>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
                                         </div>
-                                         <!-- End  Kitchen Sink -->
                                     </div>
                                 </div>
-                                <%-- tab 3--%>
-                                
-                                <%-- tab 4--%>
-                                <%-- tab 4--%>
-                                
-                                <%-- tab 5--%>
-                                <%-- tab 5--%>
-                                
+                                <!-- Best Selling Food End--> 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-                <!-- /.row -->
-                
-                <!-- Flot Charts -->
-                
-                <!-- /.row -->
-
-                
-                <!-- /.row -->
-            <!-- /.container-fluid -->
-
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
 
@@ -244,7 +248,90 @@
     <script src="js/plugins/flot/jquery.flot.resize.js"></script>
     <script src="js/plugins/flot/jquery.flot.pie.js"></script>
     <script src="js/plugins/flot/flot-data.js"></script>
-
+    <% Report report2 = new Report(); %>
+    <% HashMap<String,String> table = report2.getAllMonthIncome(); %>
+    
+    <script>
+       function chart1(){
+           Morris.Bar({
+        element: 'morris-bar-chart1',
+        data: [{
+            device: 'January',
+            geekbench: <%=table.get("January") %>
+        }, {
+            device: 'February',
+            geekbench: <%=table.get("February") %>
+        }, {
+            device: 'March',
+            geekbench: <%=table.get("March") %>
+        }, {
+            device: 'April',
+            geekbench: <%=table.get("April") %>
+        },  {
+            device:'May',
+            geekbench:<%=table.get("May") %>
+        },
+            {
+            device: 'June',
+            geekbench: <%=table.get("June") %>
+        }, {
+            device: 'July',
+            geekbench: <%=table.get("July") %>
+        }, {
+            device: 'August',
+            geekbench: <%=table.get("August") %>
+        }, {
+            device: 'September',
+            geekbench: <%=table.get("September") %>
+        },{
+            device: 'October',
+            geekbench: <%=table.get("October") %>
+        },{
+            device: 'November',
+            geekbench: <%=table.get("November") %>
+        }, {
+            device: 'December',
+            geekbench: <%=table.get("December") %>
+        },],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Geekbench'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+    });
+       }
+       chart1();
+        
+    </script>
+    
+    <script>
+       function chart2(){
+           Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{
+            device: '2012',
+            geekbench: 500
+        }, {
+            device: '2013',
+            geekbench: 137
+        }, {
+            device: '2014',
+            geekbench: 275
+        },],
+        xkey: 'device',
+        ykeys: ['geekbench'],
+        labels: ['Income'],
+        barRatio: 0.4,
+        xLabelAngle: 35,
+        hideHover: 'auto',
+        resize: true
+    });
+       }
+       chart2();
+        
+    </script>
 </body>
 
 </html>

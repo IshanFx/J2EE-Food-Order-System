@@ -46,7 +46,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                         <div class="panel-heading">
-                            Change Slider Images
+                            Site Adds
                         </div>
                         <div class="panel-body">
                             <form role="form" action="POST" enctype="multipart/formdata">

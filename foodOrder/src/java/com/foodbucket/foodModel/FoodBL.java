@@ -44,29 +44,27 @@ public class FoodBL extends FoodBean implements FoodManage {
     }
 
     @Override
-    public int modifyFoodItems() {
+    public int modifyFoodItems(FoodBean food) {
         int chk = 0;
-        String sql = "UPDATE food_tbl set fooddesc=?,foodprice=? WHERE foodid='"+getFoodId()+"'";
+        String sql = "UPDATE food_tbl set fooddesc='"+food.getFoodDesc()+"',foodprice='"+food.getFoodPrice()+"' WHERE foodid='"+food.getFoodId()+"'";
         try {
-            pstmt = DBConn.dbConn().prepareStatement(sql);
-            pstmt.setString(1, getFoodDesc());
-            pstmt.setDouble(2,getFoodPrice());
-            chk = pstmt.executeUpdate();
-        } catch (SQLException ex) {
+            chk = new DBConn().executeQuery(sql);       
+            
+        } catch (Exception ex) {
             Logger.getLogger(FoodBL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return chk;
     }
 
     @Override
-    public int removeFoodItems() {
+    public int removeFoodItems(FoodBean food) {
         int chk=0;
        
        try {
             stmt = DBConn.dbConn().createStatement();
-            chk = stmt.executeUpdate("UPDATE Food_tbl set foodstatus='D' WHERE foodid='"+getFoodId()+"'");
+            chk = stmt.executeUpdate("UPDATE Food_tbl set foodstatus='D' WHERE foodid='"+food.getFoodId()+"'");
         } catch (SQLException ex) {
-            chk=10;
+           
         }
        return chk;
     }
@@ -82,7 +80,18 @@ public class FoodBL extends FoodBean implements FoodManage {
         return rst;
     }
     
-    
+    public int getCountFood(){
+        int count = 0;
+        ResultSet rst= null;
+        String sql = "SELECT COUNT(*) FROM food_tbl";
+        try {
+           rst = new DBConn().selectQuery(sql);
+           count = rst.getInt(1);
+        } 
+        catch (Exception e) {
+        }
+        return count;
+    }
     
    
 }
